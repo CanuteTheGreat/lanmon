@@ -25,14 +25,8 @@ def readargs():
     # parse the args
     args = parser.parse_args()
     filename = args.configfile 
-
     conf = lanmonconfig(filename, 'main')
-
-    print(conf)
-
-
-    quit()
-    return("10.0.0.1/24") # FIXME: test
+    return(conf['net']) 
 
 def lanmonconfig(filename, section):
     # create a parser
@@ -56,9 +50,10 @@ def netscan(ip):
     print("test")
 
 def main():
-    # FIXME: finish
     ip = readargs()
-    print("ip:", ip)
+    print("net: \"", ip, "\"")
+
+
     #netscan(ip) 
 
 if __name__ == "__main__":
