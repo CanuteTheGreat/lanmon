@@ -92,19 +92,26 @@ def dbcompare(scan, dbconf):
 
         query = """INSERT into nodes (ip, mac) values (%s, %s)"""
 
+        # FIXME: need to handle errors from unique mac and unique ip
+        # FIXME: need to check for an existing mac
+        # FIXME: need to check for an existing ip
+
         if row == None:
             print("database is empty, adding entries")
             for machine in scan:
                 #print(machine['MAC'])
                 cur.execute(query, (machine['IP'], machine['MAC']))
+            # commit the data to database
+            conn.commit()
         else:
             print("database is not empty, comparing entries")
             for scanmachine in scan:
                 for dbmachine in row:
                     # FIXME: see if it exists or not
+                    print("test...")
+                    # commit the data to database
+                    conn.commit()
 
-        # commit the data to database
-        conn.commit()
         # close the communication with the PostgreSQL database server
         cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
