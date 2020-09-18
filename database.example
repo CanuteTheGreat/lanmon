@@ -1,0 +1,1 @@
+create table nodes (id SERIAL PRIMARY KEY, mac text not null, ip text not null, unique(mac), unique(ip));
